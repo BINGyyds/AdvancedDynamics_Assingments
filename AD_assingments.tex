@@ -1,0 +1,395 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[UTF8]{ctex} % 支持中文
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{tikz} % 用于绘制占位符
+
+% 页面边距设置
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% 定义图片占位符命令
+\newcommand{\imageplaceholder}[2]{
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw[thick, dashed] (0,0) rectangle (10,5);
+            \node at (5,2.5) {此处为插图: #1};
+        \end{tikzpicture}
+        \caption*{#2} % 使用无编号标题，或者根据需要使用 \caption
+    \end{figure}
+}
+
+\begin{document}
+
+% 封面/页头信息
+\noindent {\Large \textbf{高等动力学——作业}}
+
+\vspace{0.5cm}
+
+\begin{itemize}
+    \item 姓名：李融冰
+    \item 学号：2120250024
+\end{itemize}
+
+\vspace{0.5cm}
+
+% ----------------------------------------------------------------------
+% P 6.36
+% ----------------------------------------------------------------------
+\section*{P 6.36}
+
+\imageplaceholder{机构示意图}{原图 P6.36 机构示意图}
+
+\subsection*{（1）画自由体图（FBD）}
+取分离刚体，其受力有：杆的轴向力 $T$；重力 $mg$；弹簧弹力 $F_k$；阻尼器的阻力 $F_c$。受力图如下：
+
+\imageplaceholder{自由体图}{受力图}
+
+\subsection*{（2）推导动力学方程}
+系统共两个自由度，取 $\theta$ 和 $\phi$ 作为广义坐标，首先，可以推导质心距离 OD 面的距离为
+\begin{equation}
+    h = l \cos\theta + d \cos\phi
+\end{equation}
+然后，考虑质心速度为
+\begin{equation}
+    \vec{v}_C = -(l\dot{\theta}\sin\theta + d\dot{\phi}\sin\phi)\vec{i}_1 + (l\dot{\theta}\cos\theta + d\dot{\phi}\cos\phi)\vec{i}_2
+\end{equation}
+刚体角速度大小为
+\begin{equation}
+    \omega = \dot{\phi}
+\end{equation}
+接下来，考虑向量 $\vec{BD}$，根据
+\begin{equation}
+    \vec{OA} = l \cos\theta \vec{i}_1 + l \sin\theta \vec{i}_2
+\end{equation}
+\begin{equation}
+    \vec{AB} = \begin{bmatrix} \vec{i}_1 & \vec{i}_2 \end{bmatrix} 
+    \begin{bmatrix} \cos\phi & -\sin\phi \\ \sin\phi & \cos\phi \end{bmatrix}
+    \begin{bmatrix} s_1^* \\ s_2^* \end{bmatrix}
+    = (s_1^* \cos\phi - s_2^* \sin\phi)\vec{i}_1 + (s_1^* \sin\phi + s_2^* \cos\phi)\vec{i}_2
+\end{equation}
+\begin{equation}
+    \vec{OD} = w \vec{i}_2
+\end{equation}
+根据向量加法，可知
+\begin{equation}
+    \begin{aligned}
+    \vec{BD} &= -\vec{AB} - \vec{OA} + \vec{OD} \\
+             &= (-s_1^* \cos\phi + s_2^* \sin\phi - l \cos\theta)\vec{i}_1 + (-s_1^* \sin\phi - s_2^* \cos\phi - l \sin\theta + w)\vec{i}_2
+    \end{aligned}
+\end{equation}
+因此，$BD$ 长度为
+\begin{equation}
+    |BD| = \sqrt{(-s_1^* \cos\phi + s_2^* \sin\phi - l \cos\theta)^2 + (-s_1^* \sin\phi - s_2^* \cos\phi - l \sin\theta + w)^2}
+\end{equation}
+而 B 点处的速度矢量为
+\begin{equation}
+    \vec{v}_B = (-l\dot{\theta}\sin\theta - s_1^*\dot{\phi}\sin\phi - s_2^*\dot{\phi}\cos\phi)\vec{i}_1 + (l\dot{\theta}\cos\theta + s_1^*\dot{\phi}\cos\phi - s_2^*\dot{\phi}\sin\phi)\vec{i}_2
+\end{equation}
+沿阻尼器方向的分量为
+\begin{equation}
+    \begin{aligned}
+    v_{Bd} &= \vec{v}_B \cdot \frac{\vec{BD}}{|BD|} \\
+    &= \frac{1}{|BD|} \left[ (l\dot{\theta}\sin\theta + s_1^*\dot{\phi}\sin\phi + s_2^*\dot{\phi}\cos\phi)(s_1^*\cos\phi - s_2^*\sin\phi + l\cos\theta) \right. \\
+    &\quad \left. + (l\dot{\theta}\cos\theta + s_1^*\dot{\phi}\cos\phi - s_2^*\dot{\phi}\sin\phi)(-s_1^*\sin\phi - s_2^*\cos\phi - l\sin\theta + w) \right] \\
+    &= \dots \quad (\text{此处省略部分中间化简步骤，以原图为准}) \\
+    \end{aligned}
+\end{equation}
+综上，刚体块动能为
+\begin{equation}
+    T = \frac{1}{2}m \left[ l^2\dot{\theta}^2 + d^2\dot{\phi}^2 + 2ld\dot{\theta}\dot{\phi}\cos(\theta-\phi) \right] + \frac{1}{2}J\dot{\phi}^2
+\end{equation}
+系统的总势能为
+\begin{equation}
+    \begin{aligned}
+    V &= -mg(l\cos\theta + d\cos\phi) + \frac{1}{2}k|BD|^2 \\
+      &= -mg(l\cos\theta + d\cos\phi) \\
+      &\quad + \frac{1}{2}k \left[ w^2 - 2w(s_1^*\sin\phi + s_2^*\cos\phi + l\sin\theta) + l^2 \right. \\
+      &\quad \left. + s_1^{*2} + s_2^{*2} + s_1^*l\cos(\theta-\phi) + s_2^*l\sin(\theta-\phi) \right]
+    \end{aligned}
+\end{equation}
+拉格朗日量为
+\begin{equation}
+    \begin{aligned}
+    L = T - V &= \frac{1}{2}m \left[ l^2\dot{\theta}^2 + d^2\dot{\phi}^2 + 2ld\dot{\theta}\dot{\phi}\cos(\theta-\phi) \right] \\
+    &\quad + \frac{1}{2}J\dot{\phi}^2 + mg(l\cos\theta + d\cos\phi) \\
+    &\quad - \frac{1}{2}k \left[ w^2 - 2w(s_1^*\sin\phi + s_2^*\cos\phi + l\sin\theta) + l^2 \right. \\
+    &\quad \left. + s_1^{*2} + s_2^{*2} + s_1^*l\cos(\theta-\phi) + s_2^*l\sin(\theta-\phi) \right]
+    \end{aligned}
+\end{equation}
+针对广义坐标的阻尼力
+\begin{equation}
+    Q_\theta = -c v_{Bd} \frac{l\sin\theta - l\cos\theta + w}{|BD|}
+\end{equation}
+\begin{equation}
+    Q_\phi = -c v_{Bd} \frac{s_1^*\sin\phi - s_1^*\cos\phi + s_2^*\cos\phi + s_2^*\sin\phi}{|BD|}
+\end{equation}
+根据拉格朗日方程，得到系统的动力学方程为
+\begin{equation}
+    \begin{aligned}
+    \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{\partial L}{\partial \dot{\theta}}\right) - \frac{\partial L}{\partial \theta} 
+    &= m \left[ l^2\ddot{\theta} + ld\ddot{\phi}\cos(\theta-\phi) - ld\dot{\phi}(\dot{\theta}-\dot{\phi})\sin(\theta-\phi) \right] \\
+    &\quad + ld\dot{\theta}\dot{\phi}\sin(\theta-\phi) + mgl\sin\theta \\
+    &\quad + \frac{1}{2} \left[ 2wl\cos\theta - s_1^*l\sin(\theta-\phi) + s_2^*l\cos(\theta-\phi) \right] \\
+    &= Q_\theta
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+    \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{\partial L}{\partial \dot{\phi}}\right) - \frac{\partial L}{\partial \phi} 
+    &= m \left[ d^2\ddot{\phi} + ld\ddot{\theta}\cos(\theta-\phi) + ld\dot{\theta}\dot{\phi}\sin(\theta-\phi) \right] + J\ddot{\phi} \\
+    &\quad - mld\dot{\theta}\dot{\phi}\sin(\theta-\phi) + mgd\sin\phi \\
+    &\quad + \frac{1}{2} \left[ -2w(s_1^*\cos\phi - s_2^*\sin\phi) + s_1^*l\sin(\theta-\phi) - s_2^*l\cos(\theta-\phi) \right] \\
+    &= Q_\phi
+    \end{aligned}
+\end{equation}
+
+\subsection*{（3）求杆的载荷}
+在每一个运动瞬时，与杆方向重合的空间固定向量为
+\begin{equation}
+    \vec{r} = \cos\theta \vec{i}_1 + \sin\theta \vec{i}_2
+\end{equation}
+刚体质心的速度向量如式（2）所示，因此，每一时刻，质心加速度为
+\begin{equation}
+    \begin{aligned}
+    \vec{a}_C &= -(l\ddot{\theta}\sin\theta + l\dot{\theta}^2\cos\theta + d\ddot{\phi}\sin\phi + d\dot{\phi}^2\cos\phi)\vec{i}_1 \\
+              &\quad + (l\ddot{\theta}\cos\theta - l\dot{\theta}^2\sin\theta + d\ddot{\phi}\cos\phi - d\dot{\phi}^2\sin\phi)\vec{i}_2
+    \end{aligned}
+\end{equation}
+因此，质心加速度在杆方向上的投影为
+\begin{equation}
+    a_r = -l\dot{\theta}^2 \cos(\theta-\phi) + d\ddot{\phi}\sin(\theta-\phi) - d\dot{\phi}^2\cos(\theta-\phi)
+\end{equation}
+重力在杆方向上的分量为
+\begin{equation}
+    G_r = mg\cos\theta
+\end{equation}
+式（7）所示的 $BD$ 在杆方向上的投影为
+\begin{equation}
+    BD_r = -s_1^* \cos(\phi-\theta) + s_2^* \sin(\phi-\theta) - l + w\sin\theta
+\end{equation}
+因此，弹簧力与阻尼力在杆方向上的投影分别为
+\begin{equation}
+    F_{kr} = k BD_r
+\end{equation}
+\begin{equation}
+    F_{cr} = -c v_{Bd} \frac{BD_r}{|BD|}
+\end{equation}
+根据达朗贝尔原理，杆的载荷为（拉正压负）
+\begin{equation}
+    T_r = m a_r + G_r + F_{kr} + F_{cr}
+\end{equation}
+
+% ----------------------------------------------------------------------
+% P 6.37
+% ----------------------------------------------------------------------
+\section*{P 6.37}
+
+\imageplaceholder{曲面上的杆}{原图 P6.37}
+
+\subsection*{（1）考虑法向接触力做功}
+法向力的方向始终与接触点位移的方向始终相互垂直，因此，法向接触力不做功。
+
+\subsection*{（2）考虑切向摩擦力做功}
+由于杆在曲面上没有滑动，因此，切向摩擦力与接触点无相对滑动位移，摩擦力不做功。
+
+\subsection*{（3）系统的动能变化}
+根据上述讨论，法向接触力和切向摩擦力均不做功，因此，杆的动能改变完全由重力做功引起。因此，当杆的质心高度从 $d_1$ 变化为 $d_2$ 时，系统的动能变化为
+$$ \Delta K = Mg(d_1 - d_2) $$
+由上式可见，系统的动能变化仅仅由系统的质心高度变化决定。
+
+\subsection*{（4）机械能是否守恒}
+系统的运动过程中只有重力做功，能量在杆的动能与重力势能之间相互转化，因此机械能守恒。
+
+\subsection*{（5）角动量是否守恒}
+在系统运动的某一时刻，杆所受合力对接触点的力矩，等于重力的力矩不等于 0，因此，杆的角动量不守恒。
+
+% ----------------------------------------------------------------------
+% P 6.40
+% ----------------------------------------------------------------------
+\section*{P 6.40}
+
+\imageplaceholder{双杆机构}{Fig. 6.32. Two-bar mechanism.}
+
+\subsection*{（1）推导动力学方程}
+系统只有一个自由度，因此，选择广义坐标 $\theta_1$。左侧杆的角速度为
+\begin{equation}
+    \omega_L = \dot{\theta}_1
+\end{equation}
+B 点处瞬时速度沿杆分量大小为
+\begin{equation}
+    \dot{\theta}_1 L_1 \sin(\theta_1 + \theta_2)
+\end{equation}
+B 点处瞬时速度垂直于杆分量大小为
+\begin{equation}
+    \dot{\theta}_1 L_1 \cos(\theta_1 + \theta_2)
+\end{equation}
+在 A 点处，瞬时速度只有沿杆分量，由此可得，右侧杆的角速度为
+\begin{equation}
+    \omega_R = \dot{\theta}_2 = \frac{\dot{\theta}_1 L_1 \cos(\theta_1 + \theta_2)}{w}
+\end{equation}
+根据余弦定理得到
+\begin{equation}
+    w = \sqrt{L_1^2 + d^2 - 2L_1 d \cos\theta_1}
+\end{equation}
+从而得到导数关系
+\begin{equation}
+    \frac{\partial w}{\partial \theta_1} = \frac{L_1 d \sin\theta_1}{w}
+\end{equation}
+根据正弦定理，可得到
+\begin{equation}
+    \sin\theta_2 = \frac{L_1}{w} \sin\theta_1
+\end{equation}
+由于 $\theta_1, \theta_2$ 均为三角形内角，因此
+\begin{equation}
+    \cos\theta_2 = \sqrt{1 - \sin^2\theta_2} = \sqrt{\frac{d^2}{w^2} - \frac{2L_1d}{w^2}\cos\theta_1 + \frac{L_1^2}{w^2}\cos^2\theta_1} = \frac{d}{w} - \frac{L_1}{w}\cos\theta_1
+\end{equation}
+由此得到导数关系
+\begin{equation}
+    \dot{\theta}_2 = \frac{L_1 \cos\theta_1}{w \cos\theta_2}\dot{\theta}_1 - \frac{d\sin^2\theta_1}{w \cos\theta_2}\dot{\theta}_1 = \dots = \frac{L_1 \cos(\theta_1 + \theta_2)}{w} \dot{\theta}_1
+\end{equation}
+上式与式（29）的结果一致。右侧杆质心速度大小为
+\begin{equation}
+    v_c = \sqrt{\dot{\theta}_1^2 L_1^2 \sin^2(\theta_1 + \theta_2) + \left(w - \frac{L_2}{2}\right)^2 \frac{\dot{\theta}_1^2 L_1^2 \cos^2(\theta_1 + \theta_2)}{w^2}}
+\end{equation}
+因此系统的总动能为
+\begin{equation}
+    T = \frac{1}{6}m_1 L_1^2 \dot{\theta}_1^2 + \frac{1}{6}m_2 \frac{L_2^2 L_1^2}{w^2} \cos^2(\theta_1 + \theta_2)\dot{\theta}_1^2 + \frac{1}{2}m_2 L_1^2 \dot{\theta}_1^2 - \frac{1}{2}m_2 \frac{L_2 L_1^2}{w} \cos^2(\theta_1 + \theta_2)\dot{\theta}_1^2
+\end{equation}
+系统的势能为
+\begin{equation}
+    V = m_1 g \frac{L_1 \sin\theta_1}{2} + m_2 g \left( w - \frac{L_2}{2} \right)\sin\theta_2 + \frac{1}{2}k(L_2 - w)^2
+\end{equation}
+系统的拉格朗日量 $L = T - V$，代入拉格朗日方程得到（公式较长，从略，详见原文档 Eq 38）。
+
+\subsection*{（2）无量纲化与数值求解}
+将式（38）左右两侧同乘下式
+\begin{equation}
+    \frac{1}{(m_1+m_2)L_1^2} \cdot \frac{(m_1+m_2)}{k}
+\end{equation}
+从而得到如下无量纲方程（Eq 40）。
+
+\subsection*{（3）角度 $\theta_1, \theta_2$ 的变化}
+\imageplaceholder{角度变化曲线}{角度变化}
+
+\subsection*{（3）无量纲角速度 $\theta_1', \theta_2'$ 的变化}
+\imageplaceholder{角速度变化曲线}{角速度变化}
+
+\subsection*{（4）无量纲角加速度 $\theta_1'', \theta_2''$ 的变化}
+\imageplaceholder{角加速度变化曲线}{角加速度变化}
+角加速度 $\theta_2''$ 按照下式计算为：
+\begin{equation}
+    \theta_2'' = \frac{\theta_1'' \cos(\theta_1+\theta_2)}{\bar{w}} - \dots \quad (\text{Eq 41})
+\end{equation}
+
+\subsection*{（5）弹簧伸长量 $\bar{\Delta}$ 的变化}
+\imageplaceholder{弹簧伸长量曲线}{弹簧伸长量变化}
+
+\subsection*{（6）无量纲摩擦力 $\bar{F^f}$ 和反力 $\bar{S}$ 的变化}
+\begin{equation}
+    \bar{F^f} = 2\xi \theta_1' \sin(\theta_1 + \theta_2)
+\end{equation}
+\begin{equation}
+    \bar{S} = \frac{\mu_2 \bar{L}_2^2 \theta_2'' - \dots}{3\bar{w}} \quad (\text{Eq 43})
+\end{equation}
+\imageplaceholder{摩擦力和反力曲线}{摩擦力和反力}
+
+\subsection*{（7）耗散能量的变化}
+\begin{equation}
+    D_k = \frac{2d\sin\left(\frac{\theta_{1,k}^2 - \theta_{1,k-1}^2}{2}\right)}{w_k + w_{k-1}} \xi (\theta_{1,k}' + \theta_{1,k-1}') \sin\dots \quad (\text{Eq 44})
+\end{equation}
+\imageplaceholder{耗散能量变化曲线}{耗散能量变化}
+
+\subsection*{（8）能量守恒验证}
+\imageplaceholder{各类能量变化曲线}{各能量变化}
+
+% ----------------------------------------------------------------------
+% P 10.17
+% ----------------------------------------------------------------------
+\section*{P 10.17}
+
+\imageplaceholder{小车摆杆系统}{原图 P10.17}
+
+\subsection*{（1）推导动力学方程}
+系统的总动能为
+\begin{equation}
+    T = \frac{1}{2}M\dot{x}^2 + \frac{1}{2}m\left( \dot{r}_{A1} - \frac{1}{2}\dot{\theta}L\sin\theta \right)^2 + \frac{1}{2}m\left( \dot{r}_{A2} + \frac{1}{2}\dot{\theta}L\cos\theta \right)^2 + \frac{1}{24}mL^2\dot{\theta}^2
+\end{equation}
+系统的势能为
+\begin{equation}
+    V = \frac{1}{2}kx^2 - \frac{1}{2}mgL\cos\theta - mg r_{A1}
+\end{equation}
+拉格朗日量的变分为
+\begin{equation}
+    \delta L = \dots \quad (\text{Eq 47})
+\end{equation}
+阻尼力虚功为
+\begin{equation}
+    \delta W = -c \dot{x} \delta x
+\end{equation}
+拉格朗日乘子项为
+\begin{equation}
+    \delta(C\lambda) = \delta r_{A1} \lambda_1 + (\delta r_{A2} - \delta x)\lambda_2
+\end{equation}
+根据哈密顿变分原理
+\begin{equation}
+    \int_{t_0}^{t_f} (\delta L + \delta W + \delta(C\lambda)) dt = 0
+\end{equation}
+得到动力学方程为（矩阵形式）：
+\begin{equation}
+    \begin{bmatrix}
+    M & & & & & 1 \\
+    & \frac{1}{3}mL^2 & -\frac{1}{2}L\sin\theta m & \frac{1}{2}L\cos\theta m & & \\
+    & -\frac{1}{2}mL\sin\theta & m & & -1 & \\
+    & \frac{1}{2}mL\cos\theta & & m & & -1 \\
+    & & -1 & & & \\
+    1 & & & -1 & & 
+    \end{bmatrix}
+    \begin{bmatrix}
+    \ddot{x} \\ \ddot{\theta} \\ \ddot{r}_{A1} \\ \ddot{r}_{A2} \\ \lambda_1 \\ \lambda_2
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    -kx - c\dot{x} \\
+    -\frac{1}{2}mgL\sin\theta \\
+    \frac{1}{2}m\dot{\theta}^2 L\cos\theta + mg \\
+    \frac{1}{2}m\dot{\theta}^2 L\sin\theta \\
+    0 \\ 
+    0
+    \end{bmatrix}
+\end{equation}
+
+\subsection*{（2）说明拉格朗日乘子的物理意义}
+拉格朗日乘子的物理意义为铰接点 A 处，确保杆与质量块铰接在一起的约束内力，并且 $\lambda_1$ 对应 $\vec{i}_1$ 方向的约束力分量，$\lambda_2$ 对应 $\vec{i}_2$ 方向的约束力分量。
+
+\subsection*{（3）绘制质量块位移 $x$ 的变化图}
+\imageplaceholder{位移变化}{小车位移随时间变化}
+
+\subsection*{（4）绘制摆杆角度 $\theta$ 的变化图}
+\imageplaceholder{角度变化}{杆角度随时间变化}
+
+\subsection*{（5）绘制杆端点的轨迹图}
+\imageplaceholder{端点轨迹}{杆端点轨迹}
+
+\subsection*{（6）绘制质量块速度 $\dot{x}$ 的变化图}
+\imageplaceholder{速度变化}{小车速度随时间变化}
+
+\subsection*{（7）绘制杆摆动角速度 $\dot{\theta}$ 的变化图}
+\imageplaceholder{角速度变化}{杆角速度随时间变化}
+
+\subsection*{（8）绘制系统的能量变化曲线}
+系统的动能和势能可以直接由每一时刻的位置、速度、加速度进行计算，而系统在两个时刻之间的阻尼耗散能量可以由以下公式近似计算
+\begin{equation}
+    D_k = \frac{\dot{x}_k + \dot{x}_{k-1}}{2}(x_k - x_{k-1})
+\end{equation}
+\imageplaceholder{能量变化曲线}{能量随时间变化}
+从图中可见，系统能量守恒，耗散能量不断增加。
+
+\subsection*{（9）绘制 A 点处内力变化}
+\imageplaceholder{内力变化曲线}{内力随时间变化}
+
+\end{document}
