@@ -2,6 +2,7 @@
 \usepackage[UTF8]{ctex} % 支持中文
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{bm}
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{float}
@@ -52,7 +53,7 @@
 \end{figure}
 
 \subsection*{（1）画自由体图（FBD）}
-取分离刚体，其受力有：杆的轴向力 $T$；重力 $mg$；弹簧弹力 $F_k$；阻尼器的阻力 $F_c$。受力图如下：
+取分离刚体，其受力有：杆的轴向力 $\bm{T}$；重力 $\bm{mg}$；弹簧弹力 $\bm{F_k}$；阻尼器的阻力 $\bm{F_c}$。受力图如下：
 
 \begin{figure}[H]
     \centering
@@ -67,30 +68,30 @@
 \end{equation}
 然后，考虑质心速度为
 \begin{equation}
-    \vec{v}_C = -(l\dot{\theta}\sin\theta + d\dot{\phi}\sin\phi)\vec{i}_1 + (l\dot{\theta}\cos\theta + d\dot{\phi}\cos\phi)\vec{i}_2
+    \underline{\bm{v}}_C = -(l\dot{\theta}\sin\theta + d\dot{\phi}\sin\phi)\overline{\bm{i}}_1 + (l\dot{\theta}\cos\theta + d\dot{\phi}\cos\phi)\overline{\bm{i}}_2
 \end{equation}
 刚体角速度大小为
 \begin{equation}
     \omega = \dot{\phi}
 \end{equation}
-接下来，考虑向量 $\vec{BD}$，根据
+接下来，考虑向量 $\underline{\bm{BD}}$，根据
 \begin{equation}
-    \vec{OA} = l \cos\theta \vec{i}_1 + l \sin\theta \vec{i}_2
+    \underline{\bm{OA}} = l \cos\theta \overline{\bm{i}}_1 + l \sin\theta \overline{\bm{i}}_2
 \end{equation}
 \begin{equation}
-    \vec{AB} = \begin{bmatrix} \vec{i}_1 & \vec{i}_2 \end{bmatrix} 
+    \underline{\bm{AB}} = \begin{bmatrix} \overline{\bm{i}}_1 & \overline{\bm{i}}_2 \end{bmatrix} 
     \begin{bmatrix} \cos\phi & -\sin\phi \\ \sin\phi & \cos\phi \end{bmatrix}
     \begin{bmatrix} s_1^* \\ s_2^* \end{bmatrix}
-    = (s_1^* \cos\phi - s_2^* \sin\phi)\vec{i}_1 + (s_1^* \sin\phi + s_2^* \cos\phi)\vec{i}_2
+    = (s_1^* \cos\phi - s_2^* \sin\phi)\overline{\bm{i}}_1 + (s_1^* \sin\phi + s_2^* \cos\phi)\overline{\bm{i}}_2
 \end{equation}
 \begin{equation}
-    \vec{OD} = w \vec{i}_2
+    \underline{\bm{OD}} = w \overline{\bm{i}}_2
 \end{equation}
 根据向量加法，可知
 \begin{equation}
     \begin{aligned}
-    \vec{BD} &= -\vec{AB} - \vec{OA} + \vec{OD} \\
-             &= (-s_1^* \cos\phi + s_2^* \sin\phi - l \cos\theta)\vec{i}_1 + (-s_1^* \sin\phi - s_2^* \cos\phi - l \sin\theta + w)\vec{i}_2
+    \underline{\bm{BD}} &= -\underline{\bm{AB}} - \underline{\bm{OA}} + \underline{\bm{OD}} \\
+             &= (-s_1^* \cos\phi + s_2^* \sin\phi - l \cos\theta)\overline{\bm{i}}_1 + (-s_1^* \sin\phi - s_2^* \cos\phi - l \sin\theta + w)\overline{\bm{i}}_2
     \end{aligned}
 \end{equation}
 因此，$BD$ 长度为
@@ -99,15 +100,17 @@
 \end{equation}
 而 B 点处的速度矢量为
 \begin{equation}
-    \vec{v}_B = (-l\dot{\theta}\sin\theta - s_1^*\dot{\phi}\sin\phi - s_2^*\dot{\phi}\cos\phi)\vec{i}_1 + (l\dot{\theta}\cos\theta + s_1^*\dot{\phi}\cos\phi - s_2^*\dot{\phi}\sin\phi)\vec{i}_2
+    \underline{\bm{v}}_B = (-l\dot{\theta}\sin\theta - s_1^*\dot{\phi}\sin\phi - s_2^*\dot{\phi}\cos\phi)\overline{\bm{i}}_1 + (l\dot{\theta}\cos\theta + s_1^*\dot{\phi}\cos\phi - s_2^*\dot{\phi}\sin\phi)\overline{\bm{i}}_2
 \end{equation}
 沿阻尼器方向的分量为
 \begin{equation}
     \begin{aligned}
-    v_{Bd} &= \vec{v}_B \cdot \frac{\vec{BD}}{|BD|} \\
-    &= \frac{1}{|BD|} \left[ (l\dot{\theta}\sin\theta + s_1^*\dot{\phi}\sin\phi + s_2^*\dot{\phi}\cos\phi)(s_1^*\cos\phi - s_2^*\sin\phi + l\cos\theta) \right. \\
-    &\quad \left. + (l\dot{\theta}\cos\theta + s_1^*\dot{\phi}\cos\phi - s_2^*\dot{\phi}\sin\phi)(-s_1^*\sin\phi - s_2^*\cos\phi - l\sin\theta + w) \right] \\
-    &= \dots \quad (\text{此处省略部分中间化简步骤，以原图为准}) \\
+    v_{B_d} &= \underline{\bm{v}}_B \cdot \underline{\bm{BD}} \\
+    &= (l\dot{\theta}\sin\theta + s_1^*\dot{\phi}\sin\phi + s_2^*\dot{\phi}\cos\phi)(s_1^*\cos\phi - s_2^*\sin\phi + l\cos\theta) \\
+    &\quad  + (l\dot{\theta}\cos\theta + s_1^*\dot{\phi}\cos\phi - s_2^*\dot{\phi}\sin\phi)(-s_1^*\sin\phi - s_2^*\cos\phi - l\sin\theta + w) \\
+    &= s_1^*l(\dot{\theta} - \dot{\phi})\sin{\theta}\cos{\phi} + s_2^*l(\dot{\phi} - \dot{\theta})\sin{\theta}\sin{\phi} \\
+    & \quad + s_1^*l(\dot{\theta} - \dot{\phi})\cos{\theta}\sin{\phi} + s_2^*l(\dot{\phi} - \dot{\theta})\cos{\theta}\cos{\phi} \\
+    & \quad + w(l\dot{\theta}\cos{\theta} + s_1^*\dot{\phi}\cos{\phi} - s_2^*\dot{\phi}\sin{\phi})
     \end{aligned}
 \end{equation}
 综上，刚体块动能为
@@ -119,8 +122,8 @@
     \begin{aligned}
     V &= -mg(l\cos\theta + d\cos\phi) + \frac{1}{2}k|BD|^2 \\
       &= -mg(l\cos\theta + d\cos\phi) \\
-      &\quad + \frac{1}{2}k \left[ w^2 - 2w(s_1^*\sin\phi + s_2^*\cos\phi + l\sin\theta) + l^2 \right. \\
-      &\quad \left. + s_1^{*2} + s_2^{*2} + s_1^*l\cos(\theta-\phi) + s_2^*l\sin(\theta-\phi) \right]
+      &\quad + \frac{1}{2}k \begin{bmatrix} w^2 - 2w(s_1^*\sin\phi + s_2^*\cos\phi + l\sin\theta) + l^2 \\ 
+        s_1^{*2} + s_2^{*2} + s_1^*l\cos(\theta-\phi) + s_2^*l\sin(\theta-\phi) \end{bmatrix}
     \end{aligned}
 \end{equation}
 拉格朗日量为
@@ -128,16 +131,16 @@
     \begin{aligned}
     L = T - V &= \frac{1}{2}m \left[ l^2\dot{\theta}^2 + d^2\dot{\phi}^2 + 2ld\dot{\theta}\dot{\phi}\cos(\theta-\phi) \right] \\
     &\quad + \frac{1}{2}J\dot{\phi}^2 + mg(l\cos\theta + d\cos\phi) \\
-    &\quad - \frac{1}{2}k \left[ w^2 - 2w(s_1^*\sin\phi + s_2^*\cos\phi + l\sin\theta) + l^2 \right. \\
-    &\quad \left. + s_1^{*2} + s_2^{*2} + s_1^*l\cos(\theta-\phi) + s_2^*l\sin(\theta-\phi) \right]
+    &\quad - \frac{1}{2}k \begin{bmatrix} w^2 - 2w(s_1^*\sin\phi + s_2^*\cos\phi + l\sin\theta) + l^2 \\ 
+        s_1^{*2} + s_2^{*2} + s_1^*l\cos(\theta-\phi) + s_2^*l\sin(\theta-\phi) \end{bmatrix}
     \end{aligned}
 \end{equation}
 针对广义坐标的阻尼力
 \begin{equation}
-    Q_\theta = -c v_{Bd} \frac{l\sin\theta - l\cos\theta + w}{|BD|}
+    Q_\theta = -c v_{B_d} \frac{l\sin\theta - l\cos\theta + w}{|BD|}
 \end{equation}
 \begin{equation}
-    Q_\phi = -c v_{Bd} \frac{s_1^*\sin\phi - s_1^*\cos\phi + s_2^*\cos\phi + s_2^*\sin\phi}{|BD|}
+    Q_\phi = -c v_{B_d} \frac{s_1^*\sin\phi - s_1^*\cos\phi + s_2^*\cos\phi + s_2^*\sin\phi}{|BD|}
 \end{equation}
 根据拉格朗日方程，得到系统的动力学方程为
 \begin{equation}
@@ -162,13 +165,13 @@
 \subsection*{（3）求杆的载荷}
 在每一个运动瞬时，与杆方向重合的空间固定向量为
 \begin{equation}
-    \vec{r} = \cos\theta \vec{i}_1 + \sin\theta \vec{i}_2
+    \underline{\bm{r}} = \cos\theta \overline{\bm{i}}_1 + \sin\theta \overline{\bm{i}}_2
 \end{equation}
 刚体质心的速度向量如式（2）所示，因此，每一时刻，质心加速度为
 \begin{equation}
     \begin{aligned}
-    \vec{a}_C &= -(l\ddot{\theta}\sin\theta + l\dot{\theta}^2\cos\theta + d\ddot{\phi}\sin\phi + d\dot{\phi}^2\cos\phi)\vec{i}_1 \\
-              &\quad + (l\ddot{\theta}\cos\theta - l\dot{\theta}^2\sin\theta + d\ddot{\phi}\cos\phi - d\dot{\phi}^2\sin\phi)\vec{i}_2
+    \underline{\bm{a}}_C &= -(l\ddot{\theta}\sin\theta + l\dot{\theta}^2\cos\theta + d\ddot{\phi}\sin\phi + d\dot{\phi}^2\cos\phi)\overline{\bm{i}}_1 \\
+              &\quad + (l\ddot{\theta}\cos\theta - l\dot{\theta}^2\sin\theta + d\ddot{\phi}\cos\phi - d\dot{\phi}^2\sin\phi)\overline{\bm{i}}_2
     \end{aligned}
 \end{equation}
 因此，质心加速度在杆方向上的投影为
@@ -269,11 +272,14 @@ B 点处瞬时速度垂直于杆分量大小为
 \end{equation}
 由此得到导数关系
 \begin{equation}
-    \dot{\theta}_2 = \frac{L_1 \cos\theta_1}{w \cos\theta_2}\dot{\theta}_1 - \frac{d\sin^2\theta_1}{w \cos\theta_2}\dot{\theta}_1 = \dots = \frac{L_1 \cos(\theta_1 + \theta_2)}{w} \dot{\theta}_1
+    \dot{\theta}_2 = \frac{L_1 \cos\theta_1}{w \cos\theta_2}\dot{\theta}_1 - \frac{d\sin^2\theta_1}{w \cos\theta_2}\dot{\theta}_1  = \frac{L_1 \cos(\theta_1 + \theta_2)}{w} \dot{\theta}_1
 \end{equation}
 上式与式（29）的结果一致。右侧杆质心速度大小为
 \begin{equation}
-    v_c = \sqrt{\dot{\theta}_1^2 L_1^2 \sin^2(\theta_1 + \theta_2) + \left(w - \frac{L_2}{2}\right)^2 \frac{\dot{\theta}_1^2 L_1^2 \cos^2(\theta_1 + \theta_2)}{w^2}}
+    \begin{aligned}
+    v_c & = \sqrt{\dot{\theta}_1^2 L_1^2 \sin^2(\theta_1 + \theta_2) + \left(w - \frac{L_2}{2}\right)^2 \frac{\dot{\theta}_1^2 L_1^2 \cos^2(\theta_1 + \theta_2)}{w^2}} \\
+    & = \sqrt{\dot{\theta}_1^2 L_1^2 + \left(\frac{L_2^2}{4w^2} - \frac{L_2}{w}\right) \cos^2(\theta_1 + \theta_2)}{w^2}
+    \end{aligned}
 \end{equation}
 因此系统的总动能为
 \begin{equation}
@@ -283,14 +289,54 @@ B 点处瞬时速度垂直于杆分量大小为
 \begin{equation}
     V = m_1 g \frac{L_1 \sin\theta_1}{2} + m_2 g \left( w - \frac{L_2}{2} \right)\sin\theta_2 + \frac{1}{2}k(L_2 - w)^2
 \end{equation}
-系统的拉格朗日量 $L = T - V$，代入拉格朗日方程得到（公式较长，从略，详见原文档 Eq 38）。
+系统的拉格朗日量 $L = T - V$，代入拉格朗日方程得到
+\begin{equation}
+    \begin{aligned}
+    \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{\partial L}{\partial\dot{\theta}_1}\right)-\frac{\partial L}{\partial\theta_1} & =\frac{1}{3}m_{1}L_{1}^{2}\ddot{\theta}_{1}+\frac{1}{3}m_{2}\frac{L_{2}^{2}L_{1}^{2}}{w^{2}}\cos^{2}\left(\theta_{1}+\theta_{2}\right)\ddot{\theta}_{1} \\
+    & +m_2L_1^2\ddot{\theta}_1-m_2\frac{L_2L_1^2}{w}\cos^2\left(\theta_1+\theta_2\right)\ddot{\theta}_1 \\
+    & +\frac{1}{6}m_2L_2^2L_1^2
+    \begin{bmatrix}
+    -2\frac{\cos\left(\theta_1+\theta_2\right)\sin\left(\theta_1+\theta_2\right)}{w^2}\left(1+\frac{L_1\cos\left(\theta_1+\theta_2\right)}{w}\right) \\
+    -2\frac{L_1d\cos^2\left(\theta_1+\theta_2\right)\sin\theta_1}{w^4}
+    \end{bmatrix}\dot{\theta}_1^2 \\
+    & -\frac{1}{2}m_2L_2L_1^2
+    \begin{bmatrix}
+    -2\frac{\cos\left(\theta_1+\theta_2\right)\sin\left(\theta_1+\theta_2\right)}{w}\left(1+\frac{L_1\cos\left(\theta_1+\theta_2\right)}{w}\right) \\
+    -\frac{L_1d\cos^2\left(\theta_1+\theta_2\right)\sin\theta_1}{w^3}
+    \end{bmatrix}\dot{\theta}_1^2 \\
+    & m_1g\frac{L_1\cos\theta_1}{2}+m_2g\frac{L_1d\sin\theta_1}{w}\sin\theta_2 \\
+    & +m_2g\left(w-\frac{L_2}{2}\right)\frac{L_1\cos\left(\theta_1+\theta_2\right)}{w}\cos\theta_2 \\
+    & -k\left(L_2-w\right)\frac{L_1d\sin\theta_1}{w} \\
+    & =-c\dot{\theta}_1L_1\sin\left(\theta_1+\theta_2\right)\frac{L_1d\sin\theta_1}{w}
+    \end{aligned}
+\end{equation}
 
 \subsection*{（2）无量纲化与数值求解}
 将式（38）左右两侧同乘下式
 \begin{equation}
     \frac{1}{(m_1+m_2)L_1^2} \cdot \frac{(m_1+m_2)}{k}
 \end{equation}
-从而得到如下无量纲方程（Eq 40）。
+从而得到如下无量纲方程
+\begin{equation}
+    \begin{aligned}
+    & \frac{1}{3}\mu_{1}\theta_{1}^{\prime\prime}+\frac{1}{3}\mu_{2}\frac{L_{2}^{2}}{w^{2}}\cos^{2}\left(\theta_{1}+\theta_{2}\right)\theta_{1}^{\prime\prime} \\
+    & +\mu_2\theta_1^{\prime\prime}-\mu_2\frac{L_2}{w}\cos^2\left(\theta_1+\theta_2\right)\theta_1^{\prime\prime} \\
+    & +\frac{1}{6}\mu_{2}
+    \begin{bmatrix}
+    -2\frac{L_{2}^{2}\operatorname{cos}\left(\theta_{1}+\theta_{2}\right)\operatorname{sin}\left(\theta_{1}+\theta_{2}\right)}{w^{2}}\left(1+\frac{L_{1}\operatorname{cos}\left(\theta_{1}+\theta_{2}\right)}{w}\right) \\
+    -2\frac{L_{2}^{2}L_{1}d\operatorname{cos}^{2}\left(\theta_{1}+\theta_{2}\right)\operatorname{sin}\theta_{1}}{w^{4}}
+    \end{bmatrix}\theta_{1}^{\prime} \\
+    & -\frac{1}{2}\mu_2
+    \begin{bmatrix}
+    -2\frac{L_2\cos\left(\theta_1+\theta_2\right)\sin\left(\theta_1+\theta_2\right)}{w}\left(1+\frac{L_1\cos\left(\theta_1+\theta_2\right)}{w}\right) \\
+    -\frac{L_2L_1d\cos^2\left(\theta_1+\theta_2\right)\sin\theta_1}{w^3}
+    \end{bmatrix}\dot{\theta}_1^2 \\
+    & \mu_1\overline{g}\frac{\cos\theta_1}{2}+\mu_2\overline{g}\frac{d\sin\theta_1}{w}\sin\theta_2 \\
+    & +\mu_2\overline{g}\left(1-\frac{L_2}{2w}\right)\mathrm{cos}\left(\theta_1+\theta_2\right)\mathrm{cos}\theta_2 \\
+    & -\left(\frac{L_2}{L_1}-\frac{w}{L_1}\right)\frac{d\sin\theta_1}{w} \\
+    & =-\frac{2d\sin\theta_1}{w}\xi\theta_1^{\prime}\sin\left(\theta_1+\theta_2\right)
+    \end{aligned}
+\end{equation}
 
 \subsection*{（3）角度 $\theta_1, \theta_2$ 的变化}
 \imageplaceholder{角度变化曲线}{角度变化}
@@ -302,7 +348,9 @@ B 点处瞬时速度垂直于杆分量大小为
 \imageplaceholder{角加速度变化曲线}{角加速度变化}
 角加速度 $\theta_2''$ 按照下式计算为：
 \begin{equation}
-    \theta_2'' = \frac{\theta_1'' \cos(\theta_1+\theta_2)}{\bar{w}} - \dots \quad (\text{Eq 41})
+    \theta_2^{\prime\prime}=\frac{\theta_1^{\prime\prime}\mathrm{cos}\left(\theta_1+\theta_2\right)}{\overline{w}}-
+    \frac{\theta_1^{\prime}\left(\theta_1^{\prime}+\theta_2^{\prime}\right)\mathrm{sin}\left(\theta_1+\theta_2\right)}{\overline{w}}-
+    \frac{\theta_1^{\prime}\overline{d}\cos\left(\theta_1+\theta_2\right)\mathrm{sin}\theta_1}{\overline{w}^3}
 \end{equation}
 
 \subsection*{（5）弹簧伸长量 $\bar{\Delta}$ 的变化}
@@ -310,16 +358,20 @@ B 点处瞬时速度垂直于杆分量大小为
 
 \subsection*{（6）无量纲摩擦力 $\bar{F^f}$ 和反力 $\bar{S}$ 的变化}
 \begin{equation}
-    \bar{F^f} = 2\xi \theta_1' \sin(\theta_1 + \theta_2)
+    \bar{F}^f = 2\xi \theta_1' \sin(\theta_1 + \theta_2)
 \end{equation}
 \begin{equation}
-    \bar{S} = \frac{\mu_2 \bar{L}_2^2 \theta_2'' - \dots}{3\bar{w}} \quad (\text{Eq 43})
+    \overline{S}=\frac{\mu_2\overline{L}_2^2\theta_2^{\prime\prime}-
+    3\mu_2\overline{g}+3\mu_2w\left(\theta_1^{\prime\prime}\cos\left(\theta_1+\theta_2\right)-
+    \theta_1^{\prime2}\sin\left(\theta_1+\theta_2\right)\right)}{3\overline{w}}
 \end{equation}
 \imageplaceholder{摩擦力和反力曲线}{摩擦力和反力}
 
 \subsection*{（7）耗散能量的变化}
 \begin{equation}
-    D_k = \frac{2d\sin\left(\frac{\theta_{1,k}^2 - \theta_{1,k-1}^2}{2}\right)}{w_k + w_{k-1}} \xi (\theta_{1,k}' + \theta_{1,k-1}') \sin\dots \quad (\text{Eq 44})
+    D_k=\frac{2d\sin\left(\frac{\theta_{1,k}^2-\theta_{1,k-1}^2}{2}\right)}{w_k+w_{k-1}}
+    \xi\left(\theta_{1,k}^{\prime}+\theta_{1,k-1}^{\prime}\right)
+    \sin\left(\frac{\theta_{1,k}+\theta_{2,k}+\theta_{1,k-1}+\theta_{2,k-1}}{2}\right)
 \end{equation}
 \imageplaceholder{耗散能量变化曲线}{耗散能量变化}
 
@@ -341,15 +393,23 @@ B 点处瞬时速度垂直于杆分量大小为
 \subsection*{（1）推导动力学方程}
 系统的总动能为
 \begin{equation}
-    T = \frac{1}{2}M\dot{x}^2 + \frac{1}{2}m\left( \dot{r}_{A1} - \frac{1}{2}\dot{\theta}L\sin\theta \right)^2 + \frac{1}{2}m\left( \dot{r}_{A2} + \frac{1}{2}\dot{\theta}L\cos\theta \right)^2 + \frac{1}{24}mL^2\dot{\theta}^2
+    T = \frac{1}{2}M\dot{x}^2 + \frac{1}{2}m\left( \dot{r}_{A_1} - \frac{1}{2}\dot{\theta}L\sin\theta \right)^2 + \frac{1}{2}m\left( \dot{r}_{A_2} + \frac{1}{2}\dot{\theta}L\cos\theta \right)^2 + \frac{1}{24}mL^2\dot{\theta}^2
 \end{equation}
 系统的势能为
 \begin{equation}
-    V = \frac{1}{2}kx^2 - \frac{1}{2}mgL\cos\theta - mg r_{A1}
+    V = \frac{1}{2}kx^2 - \frac{1}{2}mgL\cos\theta - mg r_{A_1}
 \end{equation}
 拉格朗日量的变分为
 \begin{equation}
-    \delta L = \dots \quad (\text{Eq 47})
+    \begin{aligned}
+    \delta L & =\delta\dot{x}M\dot{x}+\left(\delta\dot{r}_{A_1}-\frac{1}{2}\delta\dot{\theta}L\sin\theta-\frac{1}{2}\delta\theta\dot{\theta}L\cos\theta\right)m\left(\dot{r}_{A_1}-\frac{1}{2}\dot{\theta}L\sin\theta\right) \\
+    & +\left(\delta\dot{r}_{_{A_2}}+\frac{1}{2}\delta\dot{\theta}L\cos\theta-\frac{1}{2}\delta\theta\dot{\theta}L\sin\theta\right)m\left(\dot{r}_{_{A_2}}+\frac{1}{2}\dot{\theta}L\cos\theta\right)+\frac{1}{12}\delta\dot{\theta}mL^2\dot{\theta} \\
+    & -\delta xkx-\frac{1}{2}\delta\theta mgL\sin\theta+\delta r_{A_1}mg \\
+    & =\delta\dot{x}M\dot{x}+\delta\dot{r}_{A_1}m\left(\dot{r}_{A_1}-\frac{1}{2}\dot{\theta}L\sin\theta\right)+\delta\dot{r}_{A_2}m\left(\dot{r}_{A_2}+\frac{1}{2}\dot{\theta}L\cos\theta\right) \\
+    & +\delta\dot{\theta}\left(\frac{1}{3}mL^2\dot{\theta}+\frac{1}{2}L\cos\theta m\dot{r}_{A_2}-\frac{1}{2}L\sin\theta m\dot{r}_{A_1}\right) \\
+    & +\delta\theta\left(-\frac{1}{2}\dot{\theta}L\cos\theta m\dot{r}_{A_1}-\frac{1}{2}\dot{\theta}L\sin\theta m\dot{r}_{A_2}-\frac{1}{2}mgL\sin\theta\right) \\
+    & -\delta xkx+\delta r_{A_1}mg
+    \end{aligned}
 \end{equation}
 阻尼力虚功为
 \begin{equation}
@@ -357,7 +417,7 @@ B 点处瞬时速度垂直于杆分量大小为
 \end{equation}
 拉格朗日乘子项为
 \begin{equation}
-    \delta(C\lambda) = \delta r_{A1} \lambda_1 + (\delta r_{A2} - \delta x)\lambda_2
+    \delta(C\lambda) = \delta r_{A_1} \lambda_1 + (\delta r_{A_2} - \delta x)\lambda_2
 \end{equation}
 根据哈密顿变分原理
 \begin{equation}
@@ -374,7 +434,7 @@ B 点处瞬时速度垂直于杆分量大小为
     1 & & & -1 & & 
     \end{bmatrix}
     \begin{bmatrix}
-    \ddot{x} \\ \ddot{\theta} \\ \ddot{r}_{A1} \\ \ddot{r}_{A2} \\ \lambda_1 \\ \lambda_2
+    \ddot{x} \\ \ddot{\theta} \\ \ddot{r}_{A_1} \\ \ddot{r}_{A_2} \\ \lambda_1 \\ \lambda_2
     \end{bmatrix}
     = 
     \begin{bmatrix}
